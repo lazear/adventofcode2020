@@ -1,6 +1,7 @@
-structure Day2  =
+structure Day2 : PUZZLE =
 struct
   val day = "2"
+  val tests = ("2", "1")
 
   type policy = {min: int, max: int, chr: char, pwd: string}
   
@@ -39,8 +40,6 @@ struct
     in
       Int.toString (List.length (List.filter validate policies))
     end
-  
-  fun part2 strs = "not finished"
 
   fun part2 inputs = 
     let
@@ -51,16 +50,6 @@ struct
     in
       Int.toString (List.length (List.filter validate policies))
     end
-
-  fun run input = [part1 input, part2 input]
-
-  fun test () =
-    let
-      val exp = ["2", "1"]
-      val res = run (Utils.read "inputs/2_test.txt")
-    in 
-      Utils.assert "Day 2 test" exp res 
-    end 
 end
 
-structure D2 = Runner(Day2)
+structure D2 = Advent(Day2)

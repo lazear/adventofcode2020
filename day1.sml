@@ -1,6 +1,7 @@
 structure Day1 : PUZZLE =
 struct
   val day = "1"
+  val tests = ("514579", "241861950")
 
   fun part1 strs = 
     let
@@ -14,7 +15,6 @@ struct
 
   fun combo3 [] = []
     | combo3 (x::xs) = map (fn (a,b) => (x,a,b)) (Utils.combinations xs) @ combo3 xs
-
   
   fun part2 strs = 
     let
@@ -25,16 +25,6 @@ struct
         of [(x, y, z)] => Int.toString (x * y * z)
          | _ => raise (Fail "incorrect number of matches!")
     end
-
-  fun run input = [part1 input, part2 input]
-
-  fun test () =
-    let
-      val exp = ["514579", "241861950"]
-      val res = run (Utils.read "inputs/1_test.txt")
-    in 
-      Utils.assert "Day 1 test" exp res 
-    end 
 end
 
-structure D1 = Runner(Day1)
+structure D1 = Advent(Day1)

@@ -12,28 +12,44 @@ struct
   fun assert s x y = if x = y then () else raise (Fail ("Test failed: " ^ s))
 end
 
-structure RunAll =
+structure Calendar =
 struct
   val days : (unit -> unit) list ref = ref []
 
   fun register f = days := (f :: !days)
+
   fun run () = map (fn x => x ()) (!days)
+
+  fun runLast () = 
+    case !days
+      of x::_ => x ()
+       | [] => ()
+
 end
 
-
-functor Runner(Day : PUZZLE) = 
+functor Advent(Day : PUZZLE) = 
 struct 
+  fun test () = 
+    let
+      val input = Utils.read ("inputs/" ^ Day.day ^ "_test.txt")
+      val _ = Utils.assert ("Day " ^ Day.day ^ " part 1 test") (Day.part1 input) (#1 Day.tests)
+      val _ = Utils.assert ("Day " ^ Day.day ^ " part 2 test") (Day.part2 input) (#2 Day.tests)
+    in 
+      ()
+    end 
+
   fun run () = 
     let
       val fname = "inputs/" ^ Day.day ^ ".txt"
       val input = Utils.read fname
-      val _ = Day.test ()
-      val x = Day.run input
-      fun fmt p r = "Day " ^ Day.day ^ ", Part " ^ (Int.toString (p + 1)) ^ ": " ^ r
-      val f = List.tabulate (List.length x, fn n => fmt n (List.nth (x, n)))
+      val _ = test ()
     in 
-      print ((String.concatWith "\n" f) ^ "\n")
+      (
+        print ("Day " ^ Day.day ^ ", Part 1: " ^ Day.part1 input);
+        print ("\nDay " ^ Day.day ^ ", Part 2: " ^ Day.part2 input);
+        print "\n"
+      )
     end
   
-  val _ = RunAll.register run
+  val _ = Calendar.register run
 end

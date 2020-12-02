@@ -1,6 +1,9 @@
 signature PUZZLE =
 sig
   val day : string
-  val run : string list -> string list
-  val test : unit -> unit
+
+  val part1 : string list -> string
+  val part2 : string list -> string
+
+  val tests : string * string
 end
