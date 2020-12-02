@@ -26,11 +26,7 @@ struct
          | _ => raise (Fail "incorrect number of matches!")
     end
 
-  fun run input = 
-    let
-        val p1 = part1 input
-        val p2 = part2 input
-    in [p1, p2] end
+  fun run input = [part1 input, part2 input]
 
   fun test () =
     let
@@ -41,5 +37,4 @@ struct
     end 
 end
 
-structure X = Runner(Day1)
-val _ = RunAll.register X.run
+structure D1 = Runner(Day1)

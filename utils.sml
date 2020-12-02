@@ -12,6 +12,15 @@ struct
   fun assert s x y = if x = y then () else raise (Fail ("Test failed: " ^ s))
 end
 
+structure RunAll =
+struct
+  val days : (unit -> unit) list ref = ref []
+
+  fun register f = days := (f :: !days)
+  fun run () = map (fn x => x ()) (!days)
+end
+
+
 functor Runner(Day : PUZZLE) = 
 struct 
   fun run () = 
@@ -25,12 +34,6 @@ struct
     in 
       print ((String.concatWith "\n" f) ^ "\n")
     end
-end
-
-structure RunAll =
-struct
-  val days : (unit -> unit) list ref = ref []
-
-  fun register f = days := (f :: !days)
-  fun run () = map (fn x => x ()) (!days)
+  
+  val _ = RunAll.register run
 end
