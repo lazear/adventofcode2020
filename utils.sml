@@ -9,6 +9,9 @@ struct
   fun combinations [] = []
     | combinations (x::xs) = map (fn a => (x, a)) xs @ (combinations xs)
   
+  fun enumerate ls =
+    ListPair.zip (List.tabulate (List.length ls, fn x => x), ls)
+  
   fun assert s x y = if x = y then () else raise (Fail ("Test failed: " ^ s))
 end
 
