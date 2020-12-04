@@ -2,6 +2,7 @@ structure Day1 : PUZZLE =
 struct
   val day = "1"
   val tests = ("514579", "241861950")
+  val input = Utils.read
 
   fun part1 strs = 
     let

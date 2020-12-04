@@ -12,6 +12,8 @@ struct
   fun enumerate ls =
     ListPair.zip (List.tabulate (List.length ls, fn x => x), ls)
   
+  fun count f = List.length o (List.filter f)
+
   fun assert s x y = if x = y then () else raise (Fail ("Test failed: " ^ s))
 end
 
@@ -34,7 +36,7 @@ functor Advent(Day : PUZZLE) =
 struct 
   fun test () = 
     let
-      val input = Utils.read ("inputs/" ^ Day.day ^ "_test.txt")
+      val input = Day.input ("inputs/" ^ Day.day ^ "_test.txt")
       val _ = Utils.assert ("Day " ^ Day.day ^ " part 1 test") (Day.part1 input) (#1 Day.tests)
       val _ = Utils.assert ("Day " ^ Day.day ^ " part 2 test") (Day.part2 input) (#2 Day.tests)
     in 
@@ -44,7 +46,7 @@ struct
   fun run () = 
     let
       val fname = "inputs/" ^ Day.day ^ ".txt"
-      val input = Utils.read fname
+      val input = Day.input fname
       val _ = test ()
     in 
       (

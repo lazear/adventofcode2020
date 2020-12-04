@@ -1,7 +1,7 @@
 structure DayX : PUZZLE =
 struct
   val day = "X"
-  val tests = ("foo", "bar")
+  val tests = ("not finished", "not finished")
 
   fun part1 inputs = "not finished"
 

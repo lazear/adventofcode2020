@@ -2,6 +2,8 @@ Group is
     $SMLNJ-BASIS/basis.cm
     puzzle.sig
     utils.sml
+    rbtree.sml
     day1.sml
     day2.sml
     day3.sml
+    day4.sml

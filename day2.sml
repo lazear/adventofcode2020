@@ -2,7 +2,8 @@ structure Day2 : PUZZLE =
 struct
   val day = "2"
   val tests = ("2", "1")
-
+  val input = Utils.read
+  
   type policy = {min: int, max: int, chr: char, pwd: string}
   
   fun andThen (SOME a, SOME b) = SOME (a, b)
