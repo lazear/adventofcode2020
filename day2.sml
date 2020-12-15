@@ -1,5 +1,6 @@
 structure Day2 : PUZZLE =
 struct
+  type input = string list
   val day = "2"
   val tests = ("2", "1")
   val input = Utils.read

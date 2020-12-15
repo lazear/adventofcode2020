@@ -1,11 +1,12 @@
 signature PUZZLE =
 sig
+  type input
   val day : string
   (* file name to input *)
-  val input : string -> string list
+  val input : string -> input
 
-  val part1 : string list -> string
-  val part2 : string list -> string
+  val part1 : input -> string
+  val part2 : input -> string
 
   val tests : string * string
 end

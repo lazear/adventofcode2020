@@ -38,7 +38,7 @@ struct
       fun insl C ((key', data), a, b) = 
         case compare (key, key')
             of LESS    => balance (C((key', data), ins a, b))
-             | EQUAL   => C((key', data), a, b)
+             | EQUAL   => C((key', v), a, b)
              | GREATER => balance (C((key', data), a, ins b))
       and ins E = R((key, v), E, E)
         | ins (R tree') = insl R tree'         
